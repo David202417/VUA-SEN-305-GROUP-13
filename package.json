@@ -1,0 +1,10 @@
+{
+  "name": "student-portal-php",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Student registration and login portal built with PHP and SQLite",
+  "scripts": {
+    "start": "php -S 127.0.0.1:8000"
+  },
+  "license": "MIT"
+}

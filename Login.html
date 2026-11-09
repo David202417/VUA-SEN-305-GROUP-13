@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Log in | Student Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <a class="brand brand--center" href="index.php" aria-label="Student Portal home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Student Portal</span>
+      </a>
+
+      <section class="form-card auth-card" aria-labelledby="login-title">
+        <div class="form-heading">
+          <span class="eyebrow">Secure account access</span>
+          <h1 id="login-title">Welcome back</h1>
+          <p>Enter the email and password used during registration.</p>
+        </div>
+
+        <div id="page-message" class="notice" role="alert" hidden></div>
+
+        <form action="login.php" method="post">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              maxlength="254"
+              required
+              autofocus
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              maxlength="72"
+              required
+            />
+          </div>
+
+          <button class="button button--primary button--full" type="submit">Log in</button>
+        </form>
+
+        <p class="auth-switch">Don't have an account? <a href="biodata.html">Create one</a></p>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        const message = document.getElementById("page-message");
+        if (params.get("registered") === "1") {
+          message.textContent = "Account created successfully. You can now log in.";
+          message.className = "notice notice--success";
+          message.hidden = false;
+        } else if (params.has("error")) {
+          message.textContent = params.get("error") === "session"
+            ? "Your session has ended. Please log in again."
+            : "The email or password is incorrect.";
+          message.className = "notice notice--error";
+          message.hidden = false;
+        }
+      })();
+    </script>
+  </body>
+</html>
